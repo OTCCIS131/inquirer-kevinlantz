@@ -4,18 +4,10 @@ const chalk = require('chalk');
 
 
 console.log('Welcome To My Super Awesome Pizza Co')
-    // let questions = [size = "What size pizza?", 
-    //cheese = "Extra cheese?", 
-    //sauce = "What kind of sauce?", Toppings = "Which toppings?", cut = "How do you want it cut?"]
-
-
-
-//inquirer.prompt(questions).then(function(answers) {})
-// inquirer.prompt(quest).then(function(answe) {})
 
 var questions = [{
         type: "list",
-        name: "size ",
+        name: "size",
         message: "What size pizza?",
         choices: ["Small", "Medium", "Large"]
     }, {
@@ -34,36 +26,63 @@ var questions = [{
         name: 'toppings',
         message: 'Which toppings?',
         type: 'checkbox',
-        choices: ['Pepperoni', 'Mushroom', 'Sausage', 'Bacon', 'Green Peppers'],
+        //choices: ['Pepperoni', 'Mushroom', 'Sausage', 'Bacon', 'Green Peppers'],
+        choices: [
+            { name: 'Pepperoni', short: 'pep', value: 1, checked: false },
+            { name: 'Mushroom', short: 'mush', value: 2, checked: false },
+            { name: 'Sausage', short: 's', value: 3, checked: false },
+            { name: 'Bacon', short: 'b', value: 4, checked: false },
+            { name: 'Green Peppers', short: 'gp', value: 5, checked: false },
+        ]
     },
     {
         name: 'cut',
         message: 'How do you want the pizza cut?',
         type: 'list',
         choices: ['Triangles', 'Square', ],
+    },
+    {
+        name: 'order',
+        when: function(answers) {
+
+            if (answers.size == "Large") {
+                console.log("You want " + "Large")
+            }
+
+            if (answers.size == "Small") {
+                console.log("You want " + "small")
+            }
+            if (answers.size == "Medium") {
+                console.log("You want " + "medium")
+            }
+            if (answers.cheese == "Yes") {
+                console.log("With  " + "extra cheese")
+            }
+            if (answers.sauce == "Pizza Sauce") {
+                console.log("And  " + "Pizza Sauce")
+            }
+            if (answers.sauce == "Alfredo Sauce") {
+                console.log("And  " + "Alfredo Sauce")
+            }
+            if (answers.toppings == 1) {
+                console.log("with   " + "pepperoni")
+            }
+            if (answers.toppings == 2) {
+                console.log("with   " + "mush")
+            }
+            // if (answers.toppings == 3) {
+            //     console.log("with   " + "sausage")
+            // }
+            // if (answers.toppings == 4) {
+            //     console.log("with   " + "bacon")
+            // }
+            // if (answers.toppings == 5) {
+            //     console.log("with   " + "Green pepper")
+            // }
+
+        }
+
     }
 ]
 
 inquirer.prompt(questions).then(function(answers) {})
-
-
-
-// inquirer.prompt([{
-//     name: 'Size',
-//     type: "list",
-//     message: "What size pizza? ",
-//     choices: ["Small", "Medium", "large"],
-
-
-// }, {
-//     name: 'Cheese',
-//     type: "rawlist",
-//     message: "Extra cheese? ",
-//     choices: ["Yes", "No"],
-
-// }, {
-//     name: 'Sauce',
-//     type: "checkbox",
-//     message: "Sauce? ",
-//     choices: ["Yes", "No"]
-// }], function(answers) { });
