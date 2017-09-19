@@ -28,18 +28,18 @@ var questions = [{
         type: 'checkbox',
         //choices: ['Pepperoni', 'Mushroom', 'Sausage', 'Bacon', 'Green Peppers'],
         choices: [
-            { name: 'Pepperoni', short: 'pep', value: 1, checked: false },
-            { name: 'Mushroom', short: 'mush', value: 2, checked: false },
-            { name: 'Sausage', short: 's', value: 3, checked: false },
-            { name: 'Bacon', short: 'b', value: 4, checked: false },
-            { name: 'Green Peppers', short: 'gp', value: 5, checked: false },
+            { name: 'pepperoni', short: 'pep', value: 1, checked: false },
+            { name: 'mushroom', short: 'mush', value: 2, checked: false },
+            { name: 'sausage', short: 's', value: 3, checked: false },
+            { name: 'bacon', short: 'b', value: 4, checked: false },
+            { name: 'green Peppers', short: 'gp', value: 5, checked: false },
         ]
     },
     {
         name: 'cut',
         message: 'How do you want the pizza cut?',
         type: 'list',
-        choices: ['Triangles', 'Square', ],
+        choices: ['Triangles', 'Squares', ],
     },
     {
         name: 'order',
@@ -64,12 +64,13 @@ var questions = [{
             if (answers.sauce == "Alfredo Sauce") {
                 console.log("And  " + "Alfredo Sauce")
             }
-            if (answers.toppings == 1) {
+            if (answers.toppings = 'pepperoni') {
                 console.log("with   " + "pepperoni")
             }
-            if (answers.toppings == 2) {
+            if (answers.toppings = 'mushroom') {
                 console.log("with   " + "mush")
             }
+
             // if (answers.toppings == 3) {
             //     console.log("with   " + "sausage")
             // }
@@ -79,6 +80,31 @@ var questions = [{
             // if (answers.toppings == 5) {
             //     console.log("with   " + "Green pepper")
             // }
+            if (answers.cut == 'Triangles') {
+                console.log("Cut into triangles")
+            }
+            if (answers.cut == 'Squares') {
+                console.log("Cut into squares ")
+            }
+
+        }
+
+    }, {
+        name: 'confirm',
+        message: 'Is your order correct?',
+        type: 'list',
+        choices: ['Yes', 'No', ],
+
+    },
+    {
+        name: 'process',
+        when: function(answers) {
+            if (answers.confirm == 'Yes') {
+                console.log("Ok Your pizza is on it's way!")
+            }
+            if (answers.confirm == 'No') {
+                console.log("Sorry for the inconvenience")
+            }
 
         }
 
