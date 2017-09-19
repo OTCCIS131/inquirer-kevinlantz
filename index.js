@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 const chalk = require('chalk');
 
 
-console.log('Welcome To My Super Awesome Pizza Co')
+console.log('Welcome To Kevins Super Awesome Pizza Co')
 
 var questions = [{
         type: "list",
@@ -14,7 +14,7 @@ var questions = [{
         type: "list",
         name: "cheese",
         message: "Extra cheese?",
-        choices: ["Yes", "No"],
+        choices: ["Extra Cheese", "No Extra Cheese"],
 
     }, {
         name: 'sauce',
@@ -26,14 +26,8 @@ var questions = [{
         name: 'toppings',
         message: 'Which toppings?',
         type: 'checkbox',
-        //choices: ['Pepperoni', 'Mushroom', 'Sausage', 'Bacon', 'Green Peppers'],
-        choices: [
-            { name: 'pepperoni', short: 'pep', value: 1, checked: false },
-            { name: 'mushroom', short: 'mush', value: 2, checked: false },
-            { name: 'sausage', short: 's', value: 3, checked: false },
-            { name: 'bacon', short: 'b', value: 4, checked: false },
-            { name: 'green Peppers', short: 'gp', value: 5, checked: false },
-        ]
+        choices: ['Pepperoni', 'Mushroom', 'Sausage', 'Bacon', 'Green Peppers'],
+
     },
     {
         name: 'cut',
@@ -45,47 +39,33 @@ var questions = [{
         name: 'order',
         when: function(answers) {
 
-            if (answers.size == "Large") {
-                console.log("You want " + "Large")
+            var txt = "";
+            for (i = 0; i < answers.size.length; i++) {
+                if (answers.size[i]) {
+                    txt = txt + answers.size[i].value + " ";
+                }
             }
-
-            if (answers.size == "Small") {
-                console.log("You want " + "small")
+            for (i = 0; i < answers.cheese.length; i++) {
+                if (answers.cheese[i]) {
+                    txt = txt + answers.cheese[i].value + " ";
+                }
             }
-            if (answers.size == "Medium") {
-                console.log("You want " + "medium")
+            for (i = 0; i < answers.sauce.length; i++) {
+                if (answers.sauce[i]) {
+                    txt = txt + answers.sauce[i].value + " ";
+                }
             }
-            if (answers.cheese == "Yes") {
-                console.log("With  " + "extra cheese")
+            for (i = 0; i < answers.toppings.length; i++) {
+                if (answers.toppings[i]) {
+                    txt = txt + answers.toppings[i].value + " ";
+                }
             }
-            if (answers.sauce == "Pizza Sauce") {
-                console.log("And  " + "Pizza Sauce")
+            for (i = 0; i < answers.cut.length; i++) {
+                if (answers.cut[i]) {
+                    txt = txt + answers.cut[i].value + " ";
+                }
             }
-            if (answers.sauce == "Alfredo Sauce") {
-                console.log("And  " + "Alfredo Sauce")
-            }
-            if (answers.toppings = 'pepperoni') {
-                console.log("with   " + "pepperoni")
-            }
-            if (answers.toppings = 'mushroom') {
-                console.log("with   " + "mush")
-            }
-
-            // if (answers.toppings == 3) {
-            //     console.log("with   " + "sausage")
-            // }
-            // if (answers.toppings == 4) {
-            //     console.log("with   " + "bacon")
-            // }
-            // if (answers.toppings == 5) {
-            //     console.log("with   " + "Green pepper")
-            // }
-            if (answers.cut == 'Triangles') {
-                console.log("Cut into triangles")
-            }
-            if (answers.cut == 'Squares') {
-                console.log("Cut into squares ")
-            }
+            console.log(" You want " + answers.size + " with  " + answers.cheese + " and " + answers.sauce + " with: " + answers.toppings + " cut into " + answers.cut + ".")
 
         }
 
