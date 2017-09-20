@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 const chalk = require('chalk');
 
 
-console.log('Welcome To Kevins Super Awesome Pizza Co')
+console.log(chalk.magenta('Welcome To Kevins Awesome Pizza Co Phone:555-555-5555'))
 
 var questions = [{
         type: "list",
@@ -65,7 +65,7 @@ var questions = [{
                     txt = txt + answers.cut[i].value + " ";
                 }
             }
-            console.log(" You want " + answers.size + " with  " + answers.cheese + " and " + answers.sauce + " with: " + answers.toppings + " cut into " + answers.cut + ".")
+            console.log(chalk.yellow(" You want " + answers.size + " with  " + answers.cheese + " and " + answers.sauce + " with: " + answers.toppings + " cut into " + answers.cut + "."))
 
         }
 
@@ -80,10 +80,10 @@ var questions = [{
         name: 'process',
         when: function(answers) {
             if (answers.confirm == 'Yes') {
-                console.log("Ok Your pizza is on it's way!")
+                console.log(chalk.green("Ok Your pizza is on it's way!"))
             }
             if (answers.confirm == 'No') {
-                console.log("Sorry for the inconvenience")
+                console.log(chalk.red("Sorry for the inconvenience"))
             }
 
         }
